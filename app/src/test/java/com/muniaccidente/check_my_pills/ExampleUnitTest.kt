@@ -1,4 +1,4 @@
-package com.example.check_my_pills
+package com.muniaccidente.check_my_pills
 
 import org.junit.Test
 

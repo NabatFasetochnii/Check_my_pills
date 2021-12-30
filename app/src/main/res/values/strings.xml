@@ -13,4 +13,9 @@
     <string name="checkbox2">Кумыс</string>
     <string name="button">Add name</string>
     <string name="checkedtextview">CheckedTextView</string>
+    <string name="save_text">Save text</string>
+    <string name="textview0">0</string>
+    <string name="Tap">Tap</string>
+    <string name="channel_name">Pills_Channnel</string>
+    <string name="channel_description">Напоминание выпить таблетки</string>
 </resources>

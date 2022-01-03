@@ -1,13 +1,7 @@
 package com.muniaccidente.check_my_pills
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,14 +19,14 @@ class MainActivity : AppCompatActivity() {
     private var check3: Int = 0
     private var check4: Int = 0
     private var isUPDATE: Boolean = false
-    private val PILL_CH_ID = "PILL_CHANNEL_ID"
-    private val NotificationID = 14881337
+//    private val PILL_CH_ID = "PILL_CHANNEL_ID"
+//    private val NotificationID = 14881337
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        createNotificationChannel()
-        showMyNotification()
+//        createNotificationChannel()
+//        showMyNotification()
         preferenceManager = PreferenceManager(this)
 
 
@@ -142,36 +136,41 @@ class MainActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
-    private fun showMyNotification() {
-        val now = java.time.LocalTime.now().toString().split(".")[0]
-//        Toast.makeText(this, now, Toast.LENGTH_LONG).show()
-        if (now == "09:00:00" || now == "12:00:00" || now == "21:00:00") {
-            with(NotificationManagerCompat.from(this)) {
-                // notificationId is a unique int for each notification that you must define
-                notify(NotificationID, builder.build())
-            }
-        }
+    override fun onPause() {
+        save()
+        super.onPause()
     }
 
-    private var builder = NotificationCompat.Builder(this, PILL_CH_ID)
-        .setContentTitle("Пора!")
-        .setContentText("Дед, пей таблетки")
-        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-
-    private fun createNotificationChannel() {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = getString(R.string.channel_name)
-            val descriptionText = getString(R.string.channel_description)
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(PILL_CH_ID, name, importance).apply {
-                description = descriptionText
-            }
-            // Register the channel with the system
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
-    }
+//    private fun showMyNotification() {
+//        val now = java.time.LocalTime.now().toString().split(".")[0]
+////        Toast.makeText(this, now, Toast.LENGTH_LONG).show()
+//        if (now == "09:00:00" || now == "12:00:00" || now == "21:00:00") {
+//            with(NotificationManagerCompat.from(this)) {
+//                // notificationId is a unique int for each notification that you must define
+//                notify(NotificationID, builder.build())
+//            }
+//        }
+//    }
+//
+//    private var builder = NotificationCompat.Builder(this, PILL_CH_ID)
+//        .setContentTitle("Пора!")
+//        .setContentText("Дед, пей таблетки")
+//        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+//
+//    private fun createNotificationChannel() {
+//        // Create the NotificationChannel, but only on API 26+ because
+//        // the NotificationChannel class is new and not in the support library
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            val name = getString(R.string.channel_name)
+//            val descriptionText = getString(R.string.channel_description)
+//            val importance = NotificationManager.IMPORTANCE_DEFAULT
+//            val channel = NotificationChannel(PILL_CH_ID, name, importance).apply {
+//                description = descriptionText
+//            }
+//            // Register the channel with the system
+//            val notificationManager: NotificationManager =
+//                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//            notificationManager.createNotificationChannel(channel)
+//        }
+//    }
 }
